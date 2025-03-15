@@ -10,7 +10,7 @@ const server = Fastify();
 
 // 🔹 Configuração do CORS para múltiplas origens
 server.register(cors, {
-    origin: ["http://localhost:3000", "http://localhost:8080"], 
+    origin: ["http://localhost:3001", "http://localhost:8080"], 
     methods: ["GET", "POST"], 
 });
 
