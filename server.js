@@ -3,6 +3,9 @@ import cors from '@fastify/cors';
 import fs from 'fs';
 import path from 'path';
 
+const port = process.env.PORT || 3333;
+const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
+
 const server = Fastify();
 
 // 🔹 Configuração do CORS para múltiplas origens
@@ -59,10 +62,9 @@ server.get('/getdata', async (request, reply) => {
 });
 
 // 🔹 Iniciando o servidor corretamente
-server.listen({ port: 3333 }, (err, address) => {
+server.listen({host: host, port: port }, function (err, address) {
     if (err) {
-        console.error('❌ Erro ao iniciar o servidor:', err);
-        process.exit(1);
+      server.log.error(err)
+      process.exit(1)
     }
-    console.log(`🚀 Servidor rodando em ${address}`);
-});
+  })
